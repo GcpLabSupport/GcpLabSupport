@@ -1,0 +1,70 @@
+
+Create the cloud storage bucket with the name as GCP Project ID.
+
+Go ot the AI Platform > Notebook
+
+Click on + New Notebook > TensorFlow Enterprise  > TensorFlow Enterprise 2.3 (with LTS) > Without GPUs & click on create.
+
+Wait until note gets create then click on OPEN JUPYTERLAB
+
+Click on terminal and run the below command
+
+ git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+
+Go to the enclosing folder: training-data-analyst/quests/dei.
+
+Open the notebook file what-if-tool-challenge.ipynb.
+
+Then run th cells upto 9th cell and copy paste the below code in 10th cell and run 
+
+model = Sequential()
+model.add(layers.Dense(200, input_shape=(input_size,), activation='relu'))
+model.add(layers.Dense(50, activation='relu'))
+model.add(layers.Dense(20, activation='relu'))
+model.add(layers.Dense(1, activation='sigmoid'))
+model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+model.fit(train_data, train_labels, epochs=10, batch_size=2048, validation_split=0.1)
+
+Then run th cells upto 12th cell and copy paste the below code in 13th cell and run 
+
+limited_model = Sequential()
+limited_model.add(layers.Dense(200, input_shape=(input_size,), activation='relu'))
+limited_model.add(layers.Dense(50, activation='relu'))
+limited_model.add(layers.Dense(20, activation='relu'))
+limited_model.add(layers.Dense(1, activation='sigmoid'))
+limited_model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+limited_model.fit(limited_train_data, limited_train_labels, epochs=10, batch_size=2048, validation_split=0.1)
+
+Then run upto 15th cell and in the 16th cell change your GCP PROJECT and MODEL BUCKET NAME.
+
+Then run upto 18th cell and add this code in 19th cell at the bottom and run the 19th cell if error occurred please do not worry perform next steps.
+
+ config_builder = (WitConfigBuilder(
+  examples_for_wit[:num_datapoints],feature_names=column_names)
+ .set_custom_predict_fn(limited_custom_predict)
+ .set_target_feature('loan_granted')
+ .set_label_vocab(['denied', 'accepted'])
+ .set_compare_custom_predict_fn(custom_predict)
+ .set_model_name('limited')
+ .set_compare_model_name('complete'))
+ WitWidget(config_builder, height=800)
+
+
+Go to AI Platform models click on + new model and given name as complete_model and select region us-central 1, Then click on complete_model and select
+
+Version Name = v1
+Python version = 3.7
+Framework = TensorFlow
+Framework version = 2.3.1
+ML Runtime version = 2.3
+
+Go to AI Platform models click on + new model and given name as limited_model and select region us-central 1, Then click on limited_model and select
+
+Version Name = v1
+Python version = 3.7
+Framework = TensorFlow
+Framework version = 2.3.1
+ML Runtime version = 2.3
+
+
+15. Wait until both versions get created successfully until it shows a green mark and check for the score.
