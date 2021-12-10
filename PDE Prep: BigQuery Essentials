@@ -1,0 +1,46 @@
+1. Go to the BigQuery from the navigation menu then click on the project id on the left side menu.
+
+2. Click on the +CREATE DATASET option and enter JasmineJasper for Dataset ID then click on 
+    create dataset.
+
+3. Then again click on the project id on the left menu and click on the created dataset 
+   (JsmineJasper).
+
+4. Then click on + (create table) option on right top menu just left to the shared dataset and select       
+    the below details
+
+     Create table from : Google cloud storage
+     Select file from GCS bucket : as mentioned on lab instruction page 
+     Table name: triplog
+     Enable edit as text option and add the schema given on lab instruction page
+     Then click on create table
+
+5. Then select the table name triplog
+
+6. Run the below query one by one  by replacing the GCP project ID 
+
+Make sure to replace GCP project ID with <project> in the queries.
+
+First Query part 1:
+
+    SELECT  airline, AVG(minutes) as avg
+    FROM `<project>.JasmineJasper.triplog` 
+    WHERE origin="FRA" AND destination="KUL"
+    GROUP BY airline
+
+
+First Query part 2:
+
+    SELECT  COUNT(*)
+    FROM `<project>.JasmineJasper.triplog` 
+
+    Second Query:
+
+    SELECT  airline, AVG(minutes) as avg
+    FROM `<project>.JasmineJasper.triplog` 
+    WHERE origin="LHR" AND destination="KUL"
+    GROUP BY airline
+    ORDER BY avg ASC
+
+
+7. After running the above queries, check for the score.
