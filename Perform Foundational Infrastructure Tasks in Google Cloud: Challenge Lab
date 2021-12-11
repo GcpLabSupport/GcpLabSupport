@@ -1,17 +1,16 @@
 
 TAsk 1:
 
-Go to the cloud storage from navigation menu and create the bucket and give the name as GCP Project ID
-
+Go to the cloud storage from navigation menu and create the bucket with the required name.
 Task 2:
 
-Go to the pub/sub > topics from the navigation menu and give the name for pub/sub topic and click on create
+Go to the pub/sub > topics from the navigation menu and give the name as mentioned on lab instructipon page
 
 Task 3:
 
 Go to the cloud function from navigation menu and :
 
-Click on create function then given the name to the function and 
+Click on create function then given the name as mentioned on lab instructipon page
 Select region us-east1
 For trigger type select cloud storage
 Select event type finalize/create
