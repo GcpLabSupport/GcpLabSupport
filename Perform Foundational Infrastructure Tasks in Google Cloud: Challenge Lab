@@ -1,0 +1,33 @@
+
+TAsk 1:
+
+Go to the cloud storage from navigation menu and create the bucket and give the name as GCP Project ID
+
+Task 2:
+
+Go to the pub/sub > topics from the navigation menu and give the name for pub/sub topic and click on create
+
+Task 3:
+
+Go to the cloud function from navigation menu and :
+
+Click on create function then given the name to the function and 
+Select region us-east1
+For trigger type select cloud storage
+Select event type finalize/create
+Click on browse bucket and select the bucket
+Click on save and 
+Then click on Runtime, build, connections and security settings and expand it then for maximum instance box clear the 3000 value and type 5
+Then click on next
+Select runtime as Node.js 14
+Give entry point name as thumbnail
+Replace the code for index.json and make the changes in line no. 15 replace your pub/sub topic ID name 
+Replace the code for package.json
+Then click on Deploy.
+
+Open below link in new tab then right click on image and save image with the name as ma.jpg then upload this image in cloud storage bucket
+
+TAsk 4:
+
+Then go to the IAM & Admin > IAM from the navigation menu and search for the username 2 then select the check box and click on remove.
+
